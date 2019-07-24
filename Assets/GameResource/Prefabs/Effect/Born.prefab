@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4795819834817900}
   - component: {fileID: 212632439714123258}
   - component: {fileID: 95190624846254756}
+  - component: {fileID: 114250141277374074}
   m_Layer: 0
   m_Name: Born
   m_TagString: Untagged
@@ -59,6 +60,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114250141277374074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123235744306434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e757b282d40384a997e2452c316621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerPrefab: {fileID: 1038966524284016, guid: 090c2d3e53c697940b90ad1dfd5443d9,
+    type: 2}
 --- !u!212 &212632439714123258
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -93,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 83edbfb8684dd084c9c1b5a05accb675, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

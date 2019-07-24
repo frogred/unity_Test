@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4593600777877784}
   - component: {fileID: 212543897917055276}
   - component: {fileID: 61042414298515080}
+  - component: {fileID: 114438046272688800}
   m_Layer: 0
   m_Name: Heart
-  m_TagString: Untagged
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1751056802885254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.09, y: 0.09, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 3.25, y: 3.25, z: 3.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -66,6 +67,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &114438046272688800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1751056802885254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919ac03fae0025a4ca322a761993ab04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BrokenSprite: {fileID: 21300012, guid: 529e000d42d32de49bc475716ba7ae37, type: 3}
+  ExplosionPrefab: {fileID: 0}
 --- !u!212 &212543897917055276
 SpriteRenderer:
   m_ObjectHideFlags: 1
