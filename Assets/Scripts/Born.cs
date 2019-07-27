@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Born : MonoBehaviour {
 
-    public bool creatPlayer;
+    public bool createPlayer;
 
     //引用
     public GameObject[] EnemyPrefabList;
@@ -24,7 +24,7 @@ public class Born : MonoBehaviour {
 
     private void BornTank()
     {
-        if (creatPlayer)
+        if (createPlayer)
         {
             Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
         }

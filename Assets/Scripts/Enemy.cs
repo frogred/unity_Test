@@ -7,11 +7,11 @@ public class Enemy : MonoBehaviour {
     //属性值
 
     public float moveSpeed = 3;
-    private float shieldTimeVal = 3;
+    //private float shieldTimeVal = 3;
     //private bool isDefend = true;
     private Vector3 bulletEulerAngles;
 
-    private float v;
+    private float v=-1;
     private float h;
 
     //引用
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour {
     //计时器
 
     private float timeVal;
-    private float timeValChangeDirection = 6;
+    private float timeValChangeDirection = 2;
 
     private void Awake()
     {
@@ -54,11 +54,9 @@ public class Enemy : MonoBehaviour {
         //        DefendEffectPrefab.SetActive(false);//关闭特效
         //    }
         //}
-        int num = Random.Range(1, 5);
-        if (timeVal > num)//攻击的时间间隔
+        if (timeVal >= 3)//攻击的时间间隔
         {
             Attack();
-            timeVal = 0;
         }
         else
         {
@@ -69,11 +67,12 @@ public class Enemy : MonoBehaviour {
     {
         Move();//坦克移动
         //Attack();//坦克攻击
+        
     }
 
     private void Move()//坦克，子弹的移动方法
     {
-        if(timeValChangeDirection > 4)
+        if(timeValChangeDirection >= 3)
         {
             int num = Random.Range(0, 7);
             if (num > 4)
@@ -152,5 +151,14 @@ public class Enemy : MonoBehaviour {
         //产生爆炸特效
         Instantiate(ExplosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
+    }
+
+    //写一个2D碰撞检测，用于让敌人碰到障碍时转向
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "block"|| collision.gameObject.tag == "wall"|| collision.gameObject.tag == "water")
+        {
+            timeVal = 3;
+        }
     }
 }

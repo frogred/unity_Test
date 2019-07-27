@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4756005104179988}
   - component: {fileID: 61283653534995460}
+  - component: {fileID: 114257889036104880}
   m_Layer: 0
   m_Name: AirBlock
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,3 +66,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &114257889036104880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117969831051726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d1e2eaa8587c347b72fa48a8f7f32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockHit: {fileID: 8300000, guid: a36f2278a85dfc8458b569c2b95bacb6, type: 3}

@@ -79,7 +79,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BrokenSprite: {fileID: 21300012, guid: 529e000d42d32de49bc475716ba7ae37, type: 3}
-  ExplosionPrefab: {fileID: 0}
+  ExplosionPrefab: {fileID: 1322335156048358, guid: 10b96baf4665aef4c90808aaf0c189c8,
+    type: 2}
+  DieAudio: {fileID: 8300000, guid: 50300ee9c0208744cbfd15486777f40a, type: 3}
 --- !u!212 &212543897917055276
 SpriteRenderer:
   m_ObjectHideFlags: 1

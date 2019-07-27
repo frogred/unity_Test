@@ -26,18 +26,22 @@ public class Bullet : MonoBehaviour {
                 if (!isPlayerBullet)//非玩家子弹
                 {
                     collision.SendMessage("Die");//?
+                    Destroy(gameObject);
                 }
-                Destroy(gameObject);
                 break;
             case "Heart":
-                collision.SendMessage("HeartDie");
-                Destroy(gameObject);
+                if(isPlayerBullet == false)
+                {
+                    collision.SendMessage("HeartDie");
+                    Destroy(gameObject);
+                }
                 break;
             case "Enemy":
                 if (isPlayerBullet)
                 {
                     collision.SendMessage("Die");
                     Destroy(gameObject);
+                    PlayerMannager.Instance.playerscore++;
                 }
                 break;
             case "Wall":
@@ -45,6 +49,10 @@ public class Bullet : MonoBehaviour {
                 Destroy(gameObject);//销毁子弹自身
                 break;
             case "Block":
+                if (isPlayerBullet)
+                {
+                    collision.SendMessage("BlockHitSound");
+                }
                 Destroy(gameObject);//销毁子弹
                 break;
             default:

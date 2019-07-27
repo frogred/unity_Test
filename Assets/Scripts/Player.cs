@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     private float shieldTimeVal = 3;
     private bool isDefend = true;
     private Vector3 bulletEulerAngles;
+    public AudioClip BulletSound;
 
 
     //引用
@@ -26,19 +27,19 @@ public class Player : MonoBehaviour {
 
     public GameObject DefendEffectPrefab;
 
+    public AudioSource MoveAudio;//控制音效播放
+
+    public AudioClip[] MoveAudioSource;// 存放音效素材
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();//上右下左，切换图片
     }
 
-
-    // Use this for initialization
-
     void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
         //是否处于无敌状态
         if (isDefend)
@@ -51,19 +52,26 @@ public class Player : MonoBehaviour {
                 DefendEffectPrefab.SetActive(false);//关闭特效
             }
         }
+        
+    }
+
+    private void FixedUpdate()//帧数固定
+    {   
+        //如果失败了，玩家就不能再动
+        if(PlayerMannager.Instance.isDefeat)
+        {
+            return;
+        }
+        Move();//坦克移动
+        //Attack();//坦克攻击
         if (timeVal > 0.4f)//攻击cd设置
         {
             Attack();
         }
         else
         {
-            timeVal += Time.deltaTime;
+            timeVal += Time.fixedDeltaTime;
         }
-    }
-    private void FixedUpdate()//帧数固定
-    {
-        Move();//坦克移动
-        //Attack();//坦克攻击
     }
 
     private void Move()//坦克，子弹的移动方法
@@ -102,6 +110,23 @@ public class Player : MonoBehaviour {
             bulletEulerAngles = new Vector3(0, 0, 0);
         }
 
+        if (v != 0 || h != 0)
+        {
+            MoveAudio.clip = MoveAudioSource[0];
+            if (!MoveAudio.isPlaying)
+            {
+                MoveAudio.Play();
+            }
+        }
+        else
+        {
+            MoveAudio.clip = MoveAudioSource[1];
+            if (!MoveAudio.isPlaying)
+            {
+                MoveAudio.Play();
+            }
+        }
+
         transform.Translate(Vector3.up * v * moveSpeed * Time.fixedDeltaTime, Space.World);
 
         transform.Translate(Vector3.right * h * moveSpeed * Time.fixedDeltaTime, Space.World);
@@ -111,8 +136,10 @@ public class Player : MonoBehaviour {
     private void Attack()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-        {   //子弹产生的角度：当前坦克的角度加上子弹应该旋转的角度？
+        {   //子弹产生的角度：当前坦克的角度加上子弹应该旋转的角度
+            //因为没给坦克角度
             Instantiate(BulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles+bulletEulerAngles));
+            AudioSource.PlayClipAtPoint(BulletSound, transform.position);
             timeVal = 0;
         }
     }
@@ -126,5 +153,6 @@ public class Player : MonoBehaviour {
         //产生爆炸特效
         Instantiate(ExplosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
+        PlayerMannager.Instance.isDead = true;
     }
 }
