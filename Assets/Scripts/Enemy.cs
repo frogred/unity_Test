@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
 
     private float v=-1;
     private float h;
+    public bool isBonus ;
+    public bool isBoomed = false;
 
     //引用
 
@@ -22,10 +24,26 @@ public class Enemy : MonoBehaviour {
     public GameObject ExplosionPrefab;//引用爆炸预制体
     //public GameObject DefendEffectPrefab;
 
+    //单例，供外界调用
     //计时器
 
     private float timeVal;
     private float timeValChangeDirection = 2;
+
+    //写单例快捷键，ctrl+r+e
+    private static Enemy instance;
+    public static Enemy Instance
+    {
+        get
+        {
+            return instance;
+        }
+
+        set
+        {
+            instance = value;
+        }
+    }
 
     private void Awake()
     {
@@ -54,6 +72,12 @@ public class Enemy : MonoBehaviour {
         //        DefendEffectPrefab.SetActive(false);//关闭特效
         //    }
         //}
+        if (isBoomed)
+        {
+            Destroy(gameObject);
+            isBoomed = false;
+        }
+
         if (timeVal >= 3)//攻击的时间间隔
         {
             Attack();
@@ -140,18 +164,23 @@ public class Enemy : MonoBehaviour {
 
     private void Attack()
     {
-        //子弹产生的角度：当前坦克的角度加上子弹应该旋转的角度？
+        //子弹产生的角度：当前坦克的角度加上子弹应该旋转的角度
+        //坦克无旋转，坦克的旋转由图片变换来实现
         Instantiate(BulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles + bulletEulerAngles));
         timeVal = 0;
     }
 
     private void Die()
     {
-        
+        if (isBonus)
+        {
+            PlayerMannager.Instance.isBonus = true;//调用tank管理生成一个奖励
+        }
         //产生爆炸特效
         Instantiate(ExplosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
 
     //写一个2D碰撞检测，用于让敌人碰到障碍时转向
     private void OnCollisionEnter2D(Collision2D collision)

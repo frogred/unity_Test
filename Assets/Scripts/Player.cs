@@ -27,9 +27,13 @@ public class Player : MonoBehaviour {
 
     public GameObject DefendEffectPrefab;
 
-    public AudioSource MoveAudio;//控制音效播放
+    public AudioSource MoveAudio;//控制移动音效播放
+
+    public AudioClip BonusAudio;//控制获得奖励音效
 
     public AudioClip[] MoveAudioSource;// 存放音效素材
+
+    //函数部分
 
     private void Awake()
     {
@@ -44,13 +48,7 @@ public class Player : MonoBehaviour {
         //是否处于无敌状态
         if (isDefend)
         {
-            DefendEffectPrefab.SetActive(true);//启用特效
-            shieldTimeVal -= Time.deltaTime;
-            if(shieldTimeVal < 0)
-            {
-                isDefend = false;
-                DefendEffectPrefab.SetActive(false);//关闭特效
-            }
+            Shield();
         }
         
     }
@@ -154,5 +152,44 @@ public class Player : MonoBehaviour {
         Instantiate(ExplosionPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
         PlayerMannager.Instance.isDead = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Bon_Life":
+                collision.SendMessage("PlusLife");
+                AudioSource.PlayClipAtPoint(BonusAudio,transform.position);
+                break;
+            case "Bon_Boom":
+                collision.SendMessage("Boom");
+                AudioSource.PlayClipAtPoint(BonusAudio, transform.position);
+                break;
+            case "Bon_Shield":
+                collision.SendMessage("GetShield");
+                AudioSource.PlayClipAtPoint(BonusAudio, transform.position);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void Shield()
+    {
+        DefendEffectPrefab.SetActive(true);//启用特效
+        shieldTimeVal -= Time.deltaTime;
+        if (shieldTimeVal < 0)
+        {
+            isDefend = false;
+            DefendEffectPrefab.SetActive(false);//关闭特效
+        }
+    }
+
+    private void ShieldActive()
+    {
+        isDefend = true;
+        shieldTimeVal = 15;
     }
 }

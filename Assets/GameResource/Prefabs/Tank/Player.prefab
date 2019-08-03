@@ -257,6 +257,7 @@ MonoBehaviour:
     type: 2}
   DefendEffectPrefab: {fileID: 1028141065042708}
   MoveAudio: {fileID: 82508176201924894}
+  BonusAudio: {fileID: 8300000, guid: 78ea59a2d35da144c983105394d01c64, type: 3}
   MoveAudioSource:
   - {fileID: 8300000, guid: 9e338ba8c87e0ba4aaf9d88ae7141118, type: 3}
   - {fileID: 8300000, guid: c5cfdb88353725d4e80bb5a486606c9e, type: 3}

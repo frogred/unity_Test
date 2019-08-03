@@ -509,9 +509,9 @@ RectTransform:
   m_Father: {fileID: 2128320024}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 57, y: 0}
   m_SizeDelta: {x: 69, y: 21.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &880053555
@@ -535,7 +535,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -654,9 +654,9 @@ RectTransform:
   m_Father: {fileID: 965719941}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -2.55}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 57, y: -2.55}
   m_SizeDelta: {x: 67.2, y: 24.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1274968867
@@ -680,7 +680,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -730,10 +730,15 @@ MonoBehaviour:
   PlayerScoreText: {fileID: 1274968867}
   PlayerLifeText: {fileID: 880053555}
   isDefeatUI: {fileID: 42132090}
+  Bonus:
+  - {fileID: 1161709419017808, guid: f9392922f23d46442958d3e8115e35f5, type: 2}
+  - {fileID: 1161709419017808, guid: fde9692fe37dea143975d2d90e01c54f, type: 2}
+  - {fileID: 1161709419017808, guid: 4537e851bb60951428a95ecb5c111c17, type: 2}
   healthvalue: 3
   playerscore: 0
   isDead: 0
   isDefeat: 0
+  isBonus: 0
 --- !u!4 &1605187725
 Transform:
   m_ObjectHideFlags: 0
@@ -938,8 +943,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -69.107, y: 45.85}
-  m_SizeDelta: {x: 33.797, y: 35.12}
+  m_AnchoredPosition: {x: -69.743, y: 45.19}
+  m_SizeDelta: {x: 32.525, y: 33.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2128320025
 MonoBehaviour:

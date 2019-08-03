@@ -30,7 +30,7 @@ public class Born : MonoBehaviour {
         }
         else
         {
-            int num = Random.Range(0, 2);
+            int num = Random.Range(0, 3);
             Instantiate(EnemyPrefabList[num], transform.position, Quaternion.identity);
         }
     }

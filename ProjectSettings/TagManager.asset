@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - Wall
   - Block
+  - Bon_Life
+  - Bon_Boom
+  - Bon_Shield
   layers:
   - Default
   - TransparentFX

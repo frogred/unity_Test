@@ -7,11 +7,36 @@ public class MapCreator : MonoBehaviour {
     //存放地图中的物件的数组
     //在unity中导入
     public GameObject[] Items;
+    //存放将会生成的奖励物品
     //已经有东西的列表
     public List<Vector3> itemPositionList = new List<Vector3>();
 
 
+
     private void Awake()
+    { 
+        FirstInit();
+        InitPlandEnemy();
+        InitMap();
+    }
+
+    private void InitPlandEnemy()
+    {
+        //实例化玩家
+        GameObject pl = Instantiate(Items[3], new Vector3(-2, -8, 0), Quaternion.identity);
+        //先生成一个pl的born，再get到born组件，设置其中的creatplayer为true
+        //getcomponent?
+        pl.GetComponent<Born>().createPlayer = true;
+
+        //在游戏一开始实例化三个敌人
+        CreateItem(Items[3], new Vector3(-10, 8, 0), Quaternion.identity);
+        CreateItem(Items[3], new Vector3(0, 8, 0), Quaternion.identity);
+        CreateItem(Items[3], new Vector3(10, 8, 0), Quaternion.identity);
+        //invoke,三个参数，第一个是需要调用的方法，第二个是第一次调用的延时，第三个是之后每一次调用的时间间隔
+        InvokeRepeating("CreateEnemy", 4, 5);
+    }
+
+    private void FirstInit()
     {
         //实例化老家
         CreateItem(Items[0], new Vector3(0, -8, 0), Quaternion.identity);
@@ -39,21 +64,8 @@ public class MapCreator : MonoBehaviour {
         {
             CreateItem(Items[6], new Vector3(11, y, 0), Quaternion.identity);
         }
-
-        //实例化玩家
-        GameObject pl = Instantiate(Items[3],new Vector3(-2, -8, 0), Quaternion.identity);
-        //先生成一个pl的born，再get到born组件，设置其中的creatplayer为true
-        //getcomponent?
-        pl.GetComponent<Born>().createPlayer = true;
-
-        //在游戏一开始实例化三个敌人
-        CreateItem(Items[3], new Vector3(-10, 8, 0), Quaternion.identity);
-        CreateItem(Items[3], new Vector3(0, 8, 0), Quaternion.identity);
-        CreateItem(Items[3], new Vector3(10, 8, 0), Quaternion.identity);
-        //invoke,三个参数，第一个是需要调用的方法，第二个是第一次调用的延时，第三个是之后每一次调用的时间间隔
-        InvokeRepeating("CreateEnemy", 4, 5);
-        InitMap();
     }
+
     private void InitMap()
     {
         //实例化地图
@@ -90,7 +102,7 @@ public class MapCreator : MonoBehaviour {
         while (true)
         {
             Vector3 creatPosition = new Vector3(Random.Range(-9, 10), Random.Range(-7, 8), 0);
-            if (!HasThePosition(creatPosition))
+            if (!HasThePosition(creatPosition))//如果该位置还没用过
             {
                 return creatPosition;
             }

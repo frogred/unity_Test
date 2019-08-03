@@ -12,11 +12,13 @@ public class PlayerMannager : MonoBehaviour {
     public Text PlayerScoreText;
     public Text PlayerLifeText;
     public GameObject isDefeatUI;
+    public GameObject[] Bonus;
     //定义玩家属性值
     public int healthvalue = 3;
     public int playerscore = 0;
     public bool isDead = false;
     public bool isDefeat = false;
+    public bool isBonus;
     //单例，外界调用
 
     private static PlayerMannager instance;
@@ -45,7 +47,15 @@ public class PlayerMannager : MonoBehaviour {
 	}
 	
 	// 在update中监听玩家的状态
+    // 7/30更新，在update中监听奖励生成的状态
 	void Update () {
+
+        if (isBonus)
+        {
+            InitBonus();
+            isBonus = false;
+            //生成奖励
+        }
         if (isDead)
         {
             Recover();
@@ -57,6 +67,12 @@ public class PlayerMannager : MonoBehaviour {
             isDefeatUI.SetActive(true);
         }
 	}
+    //写生成奖励的方法
+    private void InitBonus()
+    {
+        Vector3 bonusPosition = new Vector3(Random.Range(-9f, 10f), Random.Range(-7f, 8f), 0);
+        Instantiate(Bonus[Random.Range(0,3)], bonusPosition, Quaternion.identity);
+    }
 
     //写复活方法
     private void Recover()
@@ -77,10 +93,12 @@ public class PlayerMannager : MonoBehaviour {
             }
             //用go来存放一下object，然后调用object里面的born
             GameObject go = Instantiate(Born, new Vector3(-2, -8, 0), Quaternion.identity);
-            go.GetComponent<Born>().createPlayer = true;//调用方法，getcompont，在<>中取需要的脚本
+            go.GetComponent<Born>().createPlayer = true;//调用方法，getcomponent，在<>中取需要的脚本
             isDead = false;
         }
     }
+
+
 
     private void ReturnTotheMenu()
     {
