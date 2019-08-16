@@ -192,6 +192,10 @@ public class Player : MonoBehaviour {
                 collision.SendMessage("GetLevelUp");
                 AudioSource.PlayClipAtPoint(BonusAudio, transform.position);
                 break;
+            case "Bon_TheWorld":
+                collision.SendMessage("Dio");
+                AudioSource.PlayClipAtPoint(BonusAudio, transform.position);
+                break;
 
             default:
                 break;
@@ -212,7 +216,7 @@ public class Player : MonoBehaviour {
     private void ShieldActive()
     {
         isDefend = true;
-        shieldTimeVal = 15;
+        shieldTimeVal = 10;
     }
 
     private void LevelUp()

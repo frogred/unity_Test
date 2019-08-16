@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
     //属性值
 
     public float moveSpeed = 3;
+    public float stopCount = 10;
     //private float shieldTimeVal = 3;
     //private bool isDefend = true;
     private Vector3 bulletEulerAngles;
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour {
     private float h;
     public bool isBonus ;
     public bool isBoomed = false;
+    public bool isStopped = false;
 
     //引用
 
@@ -24,12 +26,12 @@ public class Enemy : MonoBehaviour {
     public GameObject ExplosionPrefab;//引用爆炸预制体
     //public GameObject DefendEffectPrefab;
 
-    //单例，供外界调用
     //计时器
 
     private float timeVal;
     private float timeValChangeDirection = 2;
 
+    //单例，供外界调用
     //写单例快捷键，ctrl+r+e
     private static Enemy instance;
     public static Enemy Instance
@@ -50,9 +52,6 @@ public class Enemy : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();//上右下左，切换图片
     }
 
-
-    // Use this for initialization
-
     void Start()
     {
 
@@ -72,11 +71,26 @@ public class Enemy : MonoBehaviour {
         //        DefendEffectPrefab.SetActive(false);//关闭特效
         //    }
         //}
+
         if (isBoomed)
         {
             Destroy(gameObject);
             isBoomed = false;
         }
+    }
+
+    private void FixedUpdate()//帧数固定
+    {   
+        //因道具而造成的坦克停止
+        if (isStopped)
+        {
+            if (stopCount > 0)
+            {
+                stopCount -= Time.fixedDeltaTime;
+                return;
+            }
+        }
+        Move();//坦克移动
 
         if (timeVal >= 3)//攻击的时间间隔
         {
@@ -84,14 +98,9 @@ public class Enemy : MonoBehaviour {
         }
         else
         {
-            timeVal += Time.deltaTime;
+            timeVal += Time.fixedDeltaTime;
         }
-    }
-    private void FixedUpdate()//帧数固定
-    {
-        Move();//坦克移动
-        //Attack();//坦克攻击
-        
+
     }
 
     private void Move()//坦克，子弹的移动方法
@@ -181,7 +190,6 @@ public class Enemy : MonoBehaviour {
         Destroy(gameObject);
     }
 
-
     //写一个2D碰撞检测，用于让敌人碰到障碍时转向
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -189,5 +197,11 @@ public class Enemy : MonoBehaviour {
         {
             timeVal = 3;
         }
+    }
+
+    private void StopMoving()
+    {
+        isStopped = true;
+        stopCount = 10;
     }
 }
