@@ -251,6 +251,16 @@ MonoBehaviour:
   - {fileID: 21300016, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
   - {fileID: 21300032, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
   - {fileID: 21300048, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
+  tankSpriteSR:
+  - {fileID: 21300004, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
+  - {fileID: 21300020, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
+  - {fileID: 21300036, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
+  - {fileID: 21300052, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
+  tankSpriteUR:
+  - {fileID: 21300012, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
+  - {fileID: 21300028, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
+  - {fileID: 21300044, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
+  - {fileID: 21300060, guid: c3a4b3c783ddce7438622efbc82d5538, type: 3}
   BulletPrefab: {fileID: 1212210567440736, guid: 2ce3f3257dd50b940adca8d88a09c376,
     type: 2}
   ExplosionPrefab: {fileID: 1322335156048358, guid: 10b96baf4665aef4c90808aaf0c189c8,

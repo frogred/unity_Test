@@ -12,6 +12,7 @@ TagManager:
   - Bon_Life
   - Bon_Boom
   - Bon_Shield
+  - Bon_LevelUp
   layers:
   - Default
   - TransparentFX

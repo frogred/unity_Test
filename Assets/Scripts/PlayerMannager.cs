@@ -71,7 +71,7 @@ public class PlayerMannager : MonoBehaviour {
     private void InitBonus()
     {
         Vector3 bonusPosition = new Vector3(Random.Range(-9f, 10f), Random.Range(-7f, 8f), 0);
-        Instantiate(Bonus[Random.Range(0,3)], bonusPosition, Quaternion.identity);
+        Instantiate(Bonus[3], bonusPosition, Quaternion.identity);
     }
 
     //写复活方法
@@ -97,8 +97,6 @@ public class PlayerMannager : MonoBehaviour {
             isDead = false;
         }
     }
-
-
 
     private void ReturnTotheMenu()
     {

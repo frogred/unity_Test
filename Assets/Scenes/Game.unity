@@ -734,6 +734,7 @@ MonoBehaviour:
   - {fileID: 1161709419017808, guid: f9392922f23d46442958d3e8115e35f5, type: 2}
   - {fileID: 1161709419017808, guid: fde9692fe37dea143975d2d90e01c54f, type: 2}
   - {fileID: 1161709419017808, guid: 4537e851bb60951428a95ecb5c111c17, type: 2}
+  - {fileID: 1161709419017808, guid: a7aaaa091995967469e53df941305142, type: 2}
   healthvalue: 3
   playerscore: 0
   isDead: 0
