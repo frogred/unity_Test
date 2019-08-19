@@ -55,6 +55,17 @@ public class Bullet : MonoBehaviour {
                 }
                 Destroy(gameObject);//销毁子弹
                 break;
+            case "Bon_InitWall":
+                Destroy(collision.gameObject);//销毁墙
+                Destroy(gameObject);//销毁子弹自身
+                break;
+            case "Bon_InitBlock":
+                if (isPlayerBullet)
+                {
+                    collision.SendMessage("BlockHitSound");
+                }
+                Destroy(gameObject);//销毁子弹
+                break;
             default:
                 break;
         }

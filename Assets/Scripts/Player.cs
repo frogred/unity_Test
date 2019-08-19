@@ -196,6 +196,10 @@ public class Player : MonoBehaviour {
                 collision.SendMessage("Dio");
                 AudioSource.PlayClipAtPoint(BonusAudio, transform.position);
                 break;
+            case "Bon_HomeBlock":
+                collision.SendMessage("GetHomeBlock");
+                AudioSource.PlayClipAtPoint(BonusAudio, transform.position);
+                break;
 
             default:
                 break;

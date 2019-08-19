@@ -6,7 +6,7 @@ public class Bon_Life : MonoBehaviour {
 
     private void Awake()
     {
-        Invoke("BonusDestroy", 15);
+        Invoke("BonusDestroy", 7);
     }
 
     private void PlusLife()

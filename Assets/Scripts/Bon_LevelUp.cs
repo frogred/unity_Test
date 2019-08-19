@@ -6,7 +6,7 @@ public class Bon_LevelUp : MonoBehaviour {
 
     private void Awake()
     {
-        Invoke("BonusDestroy", 15);
+        Invoke("BonusDestroy", 10);
     }
 
     private void GetLevelUp()

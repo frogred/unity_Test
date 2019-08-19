@@ -217,6 +217,8 @@ MonoBehaviour:
   - {fileID: 1215945163186206, guid: 8abe576512a700740b29b607ef09e1cb, type: 2}
   - {fileID: 1656074284058478, guid: 0177f44c6373a0b4bbc626fe79d4b838, type: 2}
   - {fileID: 1117969831051726, guid: 72169749cfe9db04c945b8cbc5e92595, type: 2}
+  - {fileID: 1210754956896650, guid: 608bdbd1471535b42a9a9c8bfa4f17d4, type: 2}
+  - {fileID: 1340623796680984, guid: f96323e656e7c99469e6414143f91cbc, type: 2}
   itemPositionList: []
 --- !u!4 &113459224
 Transform:
@@ -736,6 +738,7 @@ MonoBehaviour:
   - {fileID: 1161709419017808, guid: 4537e851bb60951428a95ecb5c111c17, type: 2}
   - {fileID: 1161709419017808, guid: a7aaaa091995967469e53df941305142, type: 2}
   - {fileID: 1161709419017808, guid: 6c02bc2ee9567a847b345e4cdd2578ea, type: 2}
+  - {fileID: 1161709419017808, guid: 949751ee826b21d4d8e071b985c9aac1, type: 2}
   healthvalue: 3
   playerscore: 0
   isDead: 0

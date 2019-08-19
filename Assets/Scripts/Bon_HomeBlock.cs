@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bon_Shield : MonoBehaviour {
-
+public class Bon_HomeBlock : MonoBehaviour {
     private void Awake()
     {
         Invoke("BonusDestroy", 10);
     }
 
-    private void GetShield()
+    private void GetHomeBlock()
     {
         GameObject gameObject;
-        gameObject = GameObject.FindGameObjectWithTag("Tank");
-        gameObject.SendMessage("ShieldActive");
+        gameObject = GameObject.Find("MapCreator");
+        gameObject.SendMessage("CreateHomeBlock");
         BonusDestroy();
     }
 

@@ -14,6 +14,9 @@ TagManager:
   - Bon_Shield
   - Bon_LevelUp
   - Bon_TheWorld
+  - Bon_HomeBlock
+  - Bon_InitWall
+  - Bon_InitBlock
   layers:
   - Default
   - TransparentFX

@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapCreator : MonoBehaviour {
-    //0.老家 1.墙 2.障碍 3.出生效果 4.河流 5.草 6.空气墙
+    //0.老家 1.墙 2.障碍 3.出生效果 4.河流 5.草 6.空气墙 7.奖励道具生成的障碍 8.奖励道具生成的墙
     //存放地图中的物件的数组
     //在unity中导入
     public GameObject[] Items;
     //存放将会生成的奖励物品
     //已经有东西的列表
     public List<Vector3> itemPositionList = new List<Vector3>();
-
-
 
     private void Awake()
     { 
@@ -33,7 +31,8 @@ public class MapCreator : MonoBehaviour {
         CreateItem(Items[3], new Vector3(0, 8, 0), Quaternion.identity);
         CreateItem(Items[3], new Vector3(10, 8, 0), Quaternion.identity);
         //invoke,三个参数，第一个是需要调用的方法，第二个是第一次调用的延时，第三个是之后每一次调用的时间间隔
-        InvokeRepeating("CreateEnemy", 4, 5);
+        //根据敌人人数来判断需不需要再生成
+        InvokeRepeating("CreateEnemy", 4, 3);
     }
 
     private void FirstInit()
@@ -41,11 +40,11 @@ public class MapCreator : MonoBehaviour {
         //实例化老家
         CreateItem(Items[0], new Vector3(0, -8, 0), Quaternion.identity);
         //实例化老家边上的墙
-        CreateItem(Items[1], new Vector3(-1, -8, 0), Quaternion.identity);
-        CreateItem(Items[1], new Vector3(1, -8, 0), Quaternion.identity);
+        CreateItem(Items[8], new Vector3(-1, -8, 0), Quaternion.identity);
+        CreateItem(Items[8], new Vector3(1, -8, 0), Quaternion.identity);
         for (int i = -1; i < 2; i++)
         {
-            CreateItem(Items[1], new Vector3(i, -7, 0), Quaternion.identity);
+            CreateItem(Items[8], new Vector3(i, -7, 0), Quaternion.identity);
         }
         //实例化空气墙
         for (int x = -11; x < 12; x++)
@@ -87,15 +86,6 @@ public class MapCreator : MonoBehaviour {
         }
     }
 
-    //自己封装一个创造物体的方法
-    private void CreateItem(GameObject createGameObject,Vector3 createPosition,Quaternion createRotation)
-    {
-        GameObject itemGO = Instantiate(createGameObject, createPosition, createRotation);
-        //setparent，使生成的物体不会散落出来，归属于当前的游戏物体（parent）。
-        itemGO.transform.SetParent(gameObject.transform);
-        itemPositionList.Add(createPosition);
-    }
-
     private Vector3 CreateRandomPosition()
     {
         //不生成边上一圈，让坦克上下存在通路
@@ -124,6 +114,7 @@ public class MapCreator : MonoBehaviour {
 
     private void CreateEnemy()
     {
+        int temp = 0;
         int num = Random.Range(0, 3);
         Vector3 enemyPos = new Vector3();
         if (num == 0)
@@ -138,6 +129,68 @@ public class MapCreator : MonoBehaviour {
         {
             enemyPos = new Vector3(10, 8, 0);
         }
-        CreateItem(Items[3], enemyPos, Quaternion.identity);
+        object[] gameObjects;
+        gameObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject go in gameObjects)
+        {
+            temp += 1;
+        }
+        if (temp >= 6)
+        {
+            return;
+        }
+        else
+        {
+            CreateItem(Items[3], enemyPos, Quaternion.identity);
+        }
+    }
+
+    private void CreateHomeBlock()
+    {
+        //实例化老家边上的铁墙
+        CreateBlock();
+        //一段时间后，改为普通砖墙
+        Invoke("CreateWall", 15);
+    }
+
+    private void CreateBlock()
+    {
+        object[] gameObjects;
+        gameObjects = GameObject.FindGameObjectsWithTag("Bon_InitWall");
+        foreach (GameObject go in gameObjects)
+        {
+            Destroy(go);
+        }
+        CreateItem(Items[7], new Vector3(-1, -8, 0), Quaternion.identity);
+        CreateItem(Items[7], new Vector3(1, -8, 0), Quaternion.identity);
+        for (int i = -1; i < 2; i++)
+        {
+            CreateItem(Items[7], new Vector3(i, -7, 0), Quaternion.identity);
+        }
+    }
+
+    private void CreateWall()
+    {
+        object[] gameObjects;
+        gameObjects = GameObject.FindGameObjectsWithTag("Bon_InitBlock");
+        foreach (GameObject go in gameObjects)
+        {
+            Destroy(go);
+        }
+        CreateItem(Items[8], new Vector3(-1, -8, 0), Quaternion.identity);
+        CreateItem(Items[8], new Vector3(1, -8, 0), Quaternion.identity);
+        for (int i = -1; i < 2; i++)
+        {
+            CreateItem(Items[8], new Vector3(i, -7, 0), Quaternion.identity);
+        }
+    }
+
+    //自己封装一个创造物体的方法
+    private void CreateItem(GameObject createGameObject, Vector3 createPosition, Quaternion createRotation)
+    {
+        GameObject itemGO = Instantiate(createGameObject, createPosition, createRotation);
+        //setparent，使生成的物体不会散落出来，归属于当前的游戏物体（parent）。
+        itemGO.transform.SetParent(gameObject.transform);
+        itemPositionList.Add(createPosition);
     }
 }

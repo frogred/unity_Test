@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bon_TheWorld : MonoBehaviour {
     private void Awake()
     {
-        Invoke("BonusDestroy", 15);
+        Invoke("BonusDestroy", 10);
     }
 
     private void Dio()

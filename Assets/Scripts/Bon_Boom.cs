@@ -9,7 +9,7 @@ public class Bon_Boom : MonoBehaviour {
 
     private void Awake()
     {
-        Invoke("BonusDestroy", 15);
+        Invoke("BonusDestroy", 10);
     }
 
     private void Boom()
